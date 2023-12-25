@@ -1,9 +1,10 @@
 import React from 'react'
+import '../../Style/SocialMeadiaLogo.scss';
 
 function Icon(props) {
   return (
     <div>
-      <a><img src={props.Path}/></a>
+      <a href={props.url}><img className='img' src={props.Path}/></a>
     </div>
   )
 }

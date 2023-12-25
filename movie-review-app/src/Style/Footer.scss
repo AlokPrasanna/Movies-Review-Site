@@ -1,0 +1,18 @@
+
+@import "Colors.scss";
+@import "FontStyle.scss";
+
+.icon{
+    display: flex;
+    justify-content: center; 
+    align-items:0;      
+}
+
+.copy-right{
+    font-size: map-get($phara-style,size );
+    color: $font-color;
+    text-align: center;
+    padding: 10px;
+}
+
+

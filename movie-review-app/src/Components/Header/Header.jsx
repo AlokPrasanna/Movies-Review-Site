@@ -1,18 +1,17 @@
 import React from 'react'
-import MenuLink from '../MenuLink/MenuLink'
+import MenuLink from '../MenuLink/MenuLink';
+import '../../Style/Header.scss';
 
 function Header() {
   return (
-    <div>
-      <a href='#'>MRV</a>
-      <div>
-        <header>
+    <div className='header'>
+        <header className='nav-bar'>{/*/ nav means navigation */}
+            <a href='#' className='app-name'>MRV</a>
             <MenuLink LinkName='Home' url='#Home'/>
             <MenuLink LinkName='Category' url='#Category'/>
             <MenuLink LinkName='Request' url='#Request'/>
             <MenuLink LinkName='About' url='#About'/>
         </header>
-      </div>
       <br />
     </div>
   )

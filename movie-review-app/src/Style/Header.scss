@@ -1,0 +1,47 @@
+@import 'Colors';
+@import 'FontStyle';
+
+.header{
+    font-weight: map-get($topic-style, bold);
+    font-family: $font-family;
+    align-content: center;
+    padding: 10px;
+}
+
+.app-name{
+    font-size: map-get($topic-style, size );
+    text-align: left;  
+    margin-right: auto;
+   
+}
+.nav-bar{
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    position: relative;
+}
+a {
+    text-decoration: none; 
+    color: $font-color;     
+    font-size: map-get($phara-style, size); 
+    cursor: pointer;   
+  }
+  .nav-bar::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: red; // Change to your desired hover color
+    bottom: 0;
+    left:0%;
+    transition: width 0.3s ease-in-out;
+}
+
+a:hover {
+    color: red; // Change to your desired hover color
+}
+
+.nav-bar:hover::before {
+    width: 100%;
+    left: 0;
+}
