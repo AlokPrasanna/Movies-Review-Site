@@ -1,0 +1,9 @@
+@import "Colors.scss";
+@import 'PageAlignments';
+
+
+.about-page{
+    background-color:$page-background-color;
+    padding-left: $padding-left;
+    padding-right: $padding-right;
+}

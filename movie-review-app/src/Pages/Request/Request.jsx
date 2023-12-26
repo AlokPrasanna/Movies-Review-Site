@@ -11,6 +11,11 @@ function Request() {
         <Header/>
       </div>
       <div>
+        <BodyContent>
+          <h1>Request Page</h1>
+        </BodyContent>
+      </div>
+      <div>
         <Footer/>
       </div>
     </div>

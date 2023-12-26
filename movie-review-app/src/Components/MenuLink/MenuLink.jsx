@@ -1,10 +1,11 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
 import '../../Style/MenuLink.scss';
 
 function MenuLink(props) {
   return (
     <div className='menu-link'>
-      <a href={props.url}>{props.LinkName}</a>
+      <Link to={props.url} >{props.LinkName}</Link>
     </div>
   )
 }
