@@ -27,27 +27,31 @@ function LatestMovieSwiper() {
   return (
     <div>
         <h1>Latest Movies</h1>
-        <Swiper
-            modules={[Autoplay,Navigation]}
-            spaceBetween={0}
-            slidesPerView={5}
-            loop={true}
-            autoplay={{ delay: 2500, disableOnInteraction: false }}
-            navigation={{
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            }}
-            centeredSlides={true}
-        >
-            {filteredMovies.map((movie) => (
-                <SwiperSlide key={movie.id}>
-                    <img className='movie-image'src={movie.path} alt={movie.title} />
-                </SwiperSlide> 
-            ))}
-            {/* Navigation Buttons */}
+        <div className='latest-swiper'>
+        <div className='swiper-button-prev'></div>
+            <Swiper className='swiper-container'
+                modules={[Autoplay,Navigation]}
+                spaceBetween={0}
+                slidesPerView={5}
+                loop={true}
+                autoplay={{ delay: 2500, disableOnInteraction: false }}
+                navigation={{
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                }}
+                centeredSlides={true}
+            >
+                {filteredMovies.map((movie) => (
+                    <SwiperSlide className= 'swiper-slide' key={movie.id}>
+                        <img className='movie-image'src={movie.path} alt={movie.title} />
+                    </SwiperSlide> 
+                ))}
+                {/* Navigation Buttons */}
+                
+                
+            </Swiper>
             <div className='swiper-button-next'></div>
-            <div className='swiper-button-prev'></div>
-        </Swiper>
+        </div>        
         <br />      
     </div>
   )
