@@ -1,0 +1,19 @@
+@import '../Style/Colors.scss';
+@import '../Style/FontStyle.scss';
+
+.movie-image{
+    width: 150px;
+    height: 300px;
+}
+
+.movie-image.highlight {
+    border: 2px solid red;
+    width: 250px;
+    height: 500px;
+}
+h1{
+ color: $font-color;
+ font-size: map-get($topic-style, size );
+  font-family: $font-family;
+  padding: 10px;
+}

@@ -4,6 +4,8 @@ import Footer from '../../Components/Footer/Footer';
 import Head from '../../Components/Head/Head';
 import BodyContent from'../../Components/BodyContent/BodyContent';
 import '../../Style/Home.scss';
+import 'swiper/swiper-bundle.css'
+import LatestMovieSwiper from '../../Components/LatestMovieSwiper/LatestMovieSwiper';
 
 function Home() {
   return (
@@ -14,7 +16,7 @@ function Home() {
           </div>
           <div>
             <BodyContent>
-              <h1>Home Page</h1>
+              <LatestMovieSwiper/>
             </BodyContent>
           </div>
           <div>
