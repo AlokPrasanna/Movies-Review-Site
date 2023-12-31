@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../../Style/CategoryList.scss';
+import { Link } from 'react-router-dom';
 
 function CategoryList({ children }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,13 +23,13 @@ function CategoryList({ children }) {
         <div>
           <ul>
             <li>
-              <a href='/category/romance'>Romance</a>
+              <Link to="/filtered-movies/0/1">Romance</Link>
             </li>
             <li>
-              <a href='/category/comedy'>Comedy</a>
+              <Link to="/filtered-movies/0/2">Comedy</Link>
             </li>
             <li>
-              <a href='/category/action'>Action</a>
+              <Link to="/filtered-movies/0/3">Action</Link>
             </li>
             {/*Should create all genres */}
           </ul>

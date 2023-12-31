@@ -6,6 +6,7 @@ import BodyContent from'../../Components/BodyContent/BodyContent';
 import '../../Style/Home.scss';
 import 'swiper/swiper-bundle.css'
 import LatestMovieSwiper from '../../Components/LatestMovieSwiper/LatestMovieSwiper';
+import SaveMovieId from '../../SaveMovieId/SaveMovieId';
 
 function Home() {
   return (
@@ -22,6 +23,7 @@ function Home() {
           <div>
             <Footer/>
           </div>
+          <SaveMovieId/>
     </div>
   )
 }

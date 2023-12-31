@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../../Style/CategoryList.scss';
+import { Link } from 'react-router-dom';
 
 function LanguageList({children}) {
     const [isOpen, setIsOpen] = useState(false);
@@ -12,10 +13,6 @@ function LanguageList({children}) {
     setIsOpen(false);
   };
 
-  const GetLanguageId = (id) => {
-        //console.log(id);
-  };
-
   return (
     <div className='category-list'>
       <div
@@ -26,13 +23,13 @@ function LanguageList({children}) {
         <div>
           <ul>
             <li>
-              <a onClick={ () =>{GetLanguageId(1)} }>English</a>
+              <Link to="/filtered-movies/1/0">English</Link>
             </li>
             <li>
-              <a onClick={ () =>{GetLanguageId(2)} }>Tamil</a>
+              <Link to="/filtered-movies/2/0">Tamil</Link>
             </li>
             <li>
-              <a onClick={ () =>{GetLanguageId(3)} }>Telugu</a>
+              <Link to="/filtered-movies/3/0">Telugu</Link>
             </li>
             {/*Should create all genres */}
           </ul>

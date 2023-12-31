@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay,Navigation} from 'swiper/modules';
 import 'swiper/swiper-bundle.css';
 import MovieDetails from '../../MovieDetails/MovieDetails.json';
+import ImageClickNavigation from '../ImageClickNavigation/ImageClickNavigation';
 import '../../Style/LatestMovieImagePropeties.scss';
 
 function LatestMovieSwiper() {
@@ -29,7 +30,7 @@ function LatestMovieSwiper() {
         <h1>Latest Movies</h1>
         <div className='latest-swiper'>
         <div className='swiper-button-prev'></div>
-            <Swiper className='swiper-container'
+            <Swiper 
                 modules={[Autoplay,Navigation]}
                 spaceBetween={0}
                 slidesPerView={5}
@@ -43,7 +44,7 @@ function LatestMovieSwiper() {
             >
                 {filteredMovies.map((movie) => (
                     <SwiperSlide className= 'swiper-slide' key={movie.id}>
-                        <img className='movie-image'src={movie.path} alt={movie.title} />
+                        <ImageClickNavigation movieId ={movie.id} path={movie.path}/>
                     </SwiperSlide> 
                 ))}
                 {/* Navigation Buttons */}

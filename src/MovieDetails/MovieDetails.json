@@ -4,10 +4,10 @@
         "title":"Moonu",
         "director":"",
         "writer":"",
-        "genre":[],
+        "genre":[1],
         "cast":[],
         "language":2,
-        "path":"Images/movies/1.jpeg",
+        "path":"/Images/movies/1.jpeg",
         "releaseDate":"30/12/2012"
     },
     {
@@ -18,7 +18,7 @@
         "genre":[],
         "cast":[],
         "language":3,
-        "path":"Images/movies/2.jpg",
+        "path":"/Images/movies/2.jpg",
         "releaseDate":"30/12/2023"
     },
     {
@@ -29,7 +29,7 @@
         "genre":[],
         "cast":[],
         "language":2,
-        "path":"Images/movies/3.jpeg",
+        "path":"/Images/movies/3.jpeg",
         "releaseDate":"30/12/2023"
     },
     {
@@ -40,7 +40,7 @@
         "genre":[],
         "cast":[],
         "language":2,
-        "path":"Images/movies/4.jpg",
+        "path":"/Images/movies/4.jpg",
         "releaseDate":"30/12/2023"
     },
     {
@@ -51,7 +51,7 @@
         "genre":[],
         "cast":[],
         "language":2,
-        "path":"Images/movies/5.jpeg",
+        "path":"/Images/movies/5.jpeg",
         "releaseDate":"30/12/2023"
     },
     {
@@ -62,7 +62,7 @@
         "genre":[],
         "cast":[],
         "language":2,
-        "path":"Images/movies/6.jpeg",
+        "path":"/Images/movies/6.jpeg",
         "releaseDate":"30/12/2023"
     },
     {
@@ -73,7 +73,7 @@
         "genre":[],
         "cast":[],
         "language":2,
-        "path":"Images/movies/7.jpeg",
+        "path":"/Images/movies/7.jpeg",
         "releaseDate":"30/03/2012"
     },
     {
@@ -84,7 +84,7 @@
         "genre":[],
         "cast":[],
         "language":1,
-        "path":"Images/movies/8.webp",
+        "path":"/Images/movies/8.webp",
         "releaseDate":"30/03/2012"
     },
     {
@@ -95,7 +95,7 @@
         "genre":[],
         "cast":[],
         "language":1,
-        "path":"Images/movies/9.jpeg",
+        "path":"/Images/movies/9.jpeg",
         "releaseDate":"30/03/2012"
     },
     {
@@ -106,7 +106,7 @@
         "genre":[],
         "cast":[],
         "language":1,
-        "path":"Images/movies/10.jpg",
+        "path":"/Images/movies/10.jpg",
         "releaseDate":"30/03/2012"
     },
     {
@@ -117,7 +117,7 @@
         "genre":[],
         "cast":[],
         "language":1,
-        "path":"Images/movies/11.jpg",
+        "path":"/Images/movies/11.jpg",
         "releaseDate":"30/03/2012"
     },
     {
@@ -128,7 +128,7 @@
         "genre":[],
         "cast":[],
         "language":1,
-        "path":"Images/movies/12.jpeg",
+        "path":"/Images/movies/12.jpeg",
         "releaseDate":"30/12/2023"
     },
     {
@@ -139,7 +139,7 @@
         "genre":[],
         "cast":[],
         "language":1,
-        "path":"Images/movies/13.jpg",
+        "path":"/Images/movies/13.jpg",
         "releaseDate":"30/12/2023"
     },
     {
@@ -150,7 +150,7 @@
         "genre":[],
         "cast":[],
         "language":1,
-        "path":"Images/movies/14.jpg",
+        "path":"/Images/movies/14.jpg",
         "releaseDate":"30/12/2023"
     },
     {
@@ -161,7 +161,7 @@
         "genre":[],
         "cast":[],
         "language":2,
-        "path":"Images/movies/15.jpg",
+        "path":"/Images/movies/15.jpg",
         "releaseDate":"30/12/2023"
     },
     {
@@ -172,7 +172,7 @@
         "genre":[],
         "cast":[],
         "language":3,
-        "path":"Images/movies/16.jpeg",
+        "path":"/Images/movies/16.jpeg",
         "releaseDate":"30/03/2012"
     },
     {
@@ -183,7 +183,7 @@
         "genre":[],
         "cast":[],
         "language":1,
-        "path":"Images/movies/17.jpg",
+        "path":"/Images/movies/17.jpg",
         "releaseDate":"30/03/2012"
     },
     {
@@ -194,7 +194,7 @@
         "genre":[],
         "cast":[],
         "language":1,
-        "path":"Images/movies/18.jpeg",
+        "path":"/Images/movies/18.jpeg",
         "releaseDate":"30/03/2012"
     },
     {
@@ -205,7 +205,7 @@
         "genre":[],
         "cast":[],
         "language":1,
-        "path":"Images/movies/19.jpeg",
+        "path":"/Images/movies/19.jpeg",
         "releaseDate":"30/03/2012"
     },
     {
@@ -216,7 +216,7 @@
         "genre":[],
         "cast":[],
         "language":1,
-        "path":"Images/movies/20.jpeg",
+        "path":"/Images/movies/20.jpeg",
         "releaseDate":"30/03/2012"
     }
 ]

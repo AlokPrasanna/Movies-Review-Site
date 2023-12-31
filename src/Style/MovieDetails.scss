@@ -1,0 +1,25 @@
+@import "Colors";
+@import 'PageAlignments';
+
+
+.movie-details{
+    background-color:$page-background-color;
+    padding-left: $padding-left;
+    padding-right: $padding-right;
+
+    .content{
+        display: flex;
+
+        .pic{
+            width: 300px;
+            height:500px;
+            padding: 10px;
+            margin-left: 250px;
+            padding: 20px;
+        }
+        .data{
+            padding: 20px;
+            margin: 50px;
+        }
+    }
+}

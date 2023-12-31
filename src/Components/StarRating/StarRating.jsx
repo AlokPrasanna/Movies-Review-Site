@@ -16,7 +16,7 @@ function StarRating() {
     }
 
   return (
-    <div>
+    <div className='lable'>
       {[...Array(5)].map((star,index) =>{
         const currentRate = index+1;
         return (
