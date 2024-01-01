@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {FaStar} from 'react-icons/fa';
 import '../../Style/StarRating.scss'
 
-function StarRating() {
+function StarRating({onChange}) {
     const [rate,setRating] = useState(null);
     const [rateColor,setRateColor] = useState(null);
 
@@ -11,6 +11,7 @@ function StarRating() {
     
         if (confirmation) {
           setRating(currentRate);
+          onChange(currentRate);
           alert(`You rated ${currentRate} stars!`);
         }
     }

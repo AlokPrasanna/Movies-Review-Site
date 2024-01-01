@@ -1,29 +1,30 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay,Navigation} from 'swiper/modules';
+import { Navigation,Pagination} from 'swiper/modules';
 import 'swiper/swiper-bundle.css';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation'
 import MovieDetails from '../../MovieDetails/MovieDetails.json';
 import ImageClickNavigation from '../ImageClickNavigation/ImageClickNavigation';
 import '../../Style/LatestMovieImagePropeties.scss';
 
 function LatestMovieSwiper() {
-    // Get current Year and month
+    // Get current Date
     const CurrentDate = new Date();
-    const CurrentYear = CurrentDate.getFullYear();
-    const CurrentMonth = CurrentDate.getMonth() +1; //Months are zero based
-
+    /*const CurrentYear = CurrentDate.getFullYear();
+    const CurrentMonth = CurrentDate.getMonth() +1; //Months are zero based*/
+    const SixMonthsAgo = new Date();
+    SixMonthsAgo.setMonth(CurrentDate.getMonth() -6);
     /*console.log(CurrentYear);
     console.log(CurrentMonth);*/
     // Filter movies based on the current year and month
     const filteredMovies = MovieDetails.filter((movie) => {
-
-    // Parse the release date string into a Date object
     const [day, month, year] = movie.releaseDate.split('/');
     const movieDate = new Date(`${month}/${day}/${year}`);
-    const movieYear = movieDate.getFullYear();
-    const movieMonth = movieDate.getMonth() + 1;
-    return movieYear === CurrentYear && movieMonth === CurrentMonth;
+    return movieDate >= SixMonthsAgo && movieDate <= CurrentDate;
     });
+    console.log(filteredMovies);
 
   return (
     <div>
@@ -31,16 +32,14 @@ function LatestMovieSwiper() {
         <div className='latest-swiper'>
         <div className='swiper-button-prev'></div>
             <Swiper 
-                modules={[Autoplay,Navigation]}
+                modules={[Navigation,Pagination]}
                 spaceBetween={0}
-                slidesPerView={5}
-                loop={true}
-                autoplay={{ delay: 2500, disableOnInteraction: false }}
+                slidesPerView={3}
                 navigation={{
                     nextEl: '.swiper-button-next',
                     prevEl: '.swiper-button-prev',
                 }}
-                centeredSlides={true}
+                pagination={true}
             >
                 {filteredMovies.map((movie) => (
                     <SwiperSlide className= 'swiper-slide' key={movie.id}>
