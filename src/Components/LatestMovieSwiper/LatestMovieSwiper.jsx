@@ -43,7 +43,7 @@ function LatestMovieSwiper() {
             >
                 {filteredMovies.map((movie) => (
                     <SwiperSlide className= 'swiper-slide' key={movie.id}>
-                        <ImageClickNavigation movieId ={movie.id} path={movie.path}/>
+                        <ImageClickNavigation movieId ={movie.id} path={movie.path} alt={movie.title}/>
                     </SwiperSlide> 
                 ))}
                 {/* Navigation Buttons */}

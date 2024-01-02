@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 function Icon(props) {
   return (
     <div>
-      <Link to={props.url}><img className='img' src={props.Path}/></Link>
+      <Link to={props.url}><img className='img' src={props.Path} alt={props.alt}/></Link>
     </div>
   )
 }

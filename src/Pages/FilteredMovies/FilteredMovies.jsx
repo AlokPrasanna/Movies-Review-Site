@@ -67,7 +67,7 @@ function FilteredMovies() {
               >
               {filteredMovies.map((movie) => (
                 <SwiperSlide key={movie.id}>
-                  <ImageClickNavigation path={movie.path} movieId={movie.id} />
+                  <ImageClickNavigation path={movie.path} movieId={movie.id}  alt={movie.title}/>
                 </SwiperSlide>
               ))}
         </Swiper>

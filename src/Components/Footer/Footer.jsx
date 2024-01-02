@@ -8,11 +8,11 @@ function Footer() {
     <div className='footer'>
       <footer>
         <div className='icon'>
-          <Icon Path='/Images/SocialMediaLogos/tiktok.png' url='#ticktol' />
-          <Icon Path='/Images/SocialMediaLogos/instagram.png' url='#instergram' />
-          <Icon Path='/Images/SocialMediaLogos/facebook.png' url='#facebook' />
-          <Icon Path='/Images/SocialMediaLogos/whatsapp.png' url='#whatsApp' />
-          <Icon Path='/Images/SocialMediaLogos/twitter.png' url='#twitter' />
+          <Icon Path='/Images/SocialMediaLogos/tiktok.png' url='#tiktok' alt="Tic Tok" />
+          <Icon Path='/Images/SocialMediaLogos/instagram.png' url='#instergram' alt="Instagram" />
+          <Icon Path='/Images/SocialMediaLogos/facebook.png' url='#facebook' alt="FaceBook" />
+          <Icon Path='/Images/SocialMediaLogos/whatsapp.png' url='#whatsApp' alt="WhatsApp" />
+          <Icon Path='/Images/SocialMediaLogos/twitter.png' url='#twitter' alt="Twitter" />
         </div>
         <div className='copy-right'>
           &copy;Movies Review Application 2023
