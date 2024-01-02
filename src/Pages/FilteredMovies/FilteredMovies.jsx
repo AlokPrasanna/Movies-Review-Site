@@ -51,28 +51,28 @@ function FilteredMovies() {
     <div className='filtered-movies'>
       <Head Title="Your Movies"/>
         <Header/>
-      <div className='body'>
-     
-        <Swiper
-             modules={[Grid, Pagination]}
-             slidesPerView={3}
-             grid={{
-               rows: 3,
-             }}
-             spaceBetween={30}
-             pagination={{
-               clickable: true,
-             }}
-             className="filter-movie-swiper"
+        <BodyContent>
+          <div className='body'>
+            <Swiper
+              modules={[Grid, Pagination]}
+              slidesPerView={3}
+              grid={{
+                rows: rowCount,
+              }}
+              spaceBetween={30}
+              pagination={{
+                clickable: true,
+              }}
+              className="filter-movie-swiper"
               >
               {filteredMovies.map((movie) => (
                 <SwiperSlide key={movie.id}>
                   <ImageClickNavigation path={movie.path} movieId={movie.id}  alt={movie.title}/>
                 </SwiperSlide>
               ))}
-        </Swiper>
-      </div>
-      
+            </Swiper>
+          </div>
+        </BodyContent>      
         <Footer/>
     </div>
   )

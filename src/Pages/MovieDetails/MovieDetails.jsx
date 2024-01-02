@@ -63,7 +63,7 @@ function MovieDetails() {
 
   useEffect(() => {
     fetchMovieRatings();
-  }, [MovieIdInt]);
+  }, [MovieIdInt,fetchMovieRatings]);
 
   const handleRatingChange = async (newRating) => {
     

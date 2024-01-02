@@ -4,7 +4,7 @@ import '../../Style/StarRating.scss'
 
 function StarRating({onChange}) {
     const [rate,setRating] = useState(null);
-    const [rateColor,setRateColor] = useState(null);
+    //const [rateColor,setRateColor] = useState(null);
 
     const handleStarClick = (currentRate) => {
         const confirmation = window.confirm(`Do you want to rate ${currentRate} stars?`);
@@ -27,7 +27,7 @@ function StarRating({onChange}) {
                     onClick={() => handleStarClick(currentRate)}
                 />
                 <FaStar size={20}
-                    color={currentRate <= (rate || rateColor) ? "yellow" : "grey"}
+                    color={currentRate <= rate ? "yellow" : "grey"}
                 />
             </label>
         )
