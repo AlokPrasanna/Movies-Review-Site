@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import '../../Style/MovieDetails.scss';
 import Head from '../../Components/Head/Head';
 import Header from '../../Components/Header/Header';
@@ -19,7 +19,7 @@ function MovieDetails() {
   const [MRV, setMRV] = useState(null);
   const [newFansCount, setNewFansCount] = useState(0); 
 
-  const fetchMovieRatings = async () => {
+  const fetchMovieRatings = useCallback( async () => {
     try {
       const response = await axios.get('http://localhost:3001/get-movie-ratings');
       //console.log(response);
@@ -59,7 +59,7 @@ function MovieDetails() {
       setMRV(calculatedMRV.toFixed(1));*/
     } catch (error) {
       console.error('Error fetching movie ratings:', error);
-    }};
+    }});
 
   useEffect(() => {
     fetchMovieRatings();
