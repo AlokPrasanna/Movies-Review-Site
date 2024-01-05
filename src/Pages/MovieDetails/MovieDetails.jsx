@@ -5,15 +5,15 @@ import Header from '../../Components/Header/Header';
 import BodyContent from '../../Components/BodyContent/BodyContent';
 import Footer from '../../Components/Footer/Footer';
 import { useParams } from 'react-router-dom';
-import MovieDetail from '../../MovieDetails/MovieDetails.json';
-import StarRating from '../../Components/StarRating/StarRating';
-import axios from 'axios';
+//import StarRating from '../../Components/StarRating/StarRating';
+//import axios from 'axios';
 
 function MovieDetails() {
   const { MovieId } = useParams();
   const MovieIdInt = parseInt(MovieId, 10);
+  console.log("Movie Id : ", MovieIdInt);
 
-  const MovieInfor = MovieDetail.find((movie) => movie.id === MovieIdInt);
+  /*const MovieInfor = MovieDetail.find((movie) => movie.id === MovieIdInt);
 
   const [MovieRatings, setMovieRatings] = useState([null]);
   const [MRV, setMRV] = useState(null);
@@ -31,7 +31,7 @@ function MovieDetails() {
       try{
         if (filteredRatings.length > 0) {
           const RatingCount = filteredRatings.reduce((total, rating) => total + rating.rating_count, 0);
-          const FansCount = filteredRatings.reduce((total, rating) => total + parseInt(rating.fans_count, 10), 0);
+          const FansCount = filteredRatings.reduce((total, rating) => total + rating.fans_count, 0);
           setMovieRatings(RatingCount);
           setNewFansCount(FansCount);
          // console.log(RatingCount);
@@ -56,7 +56,7 @@ function MovieDetails() {
       const fansCount = filteredRatings.reduce((total, rating) => total + rating.fans_count, 0);
 
       const calculatedMRV = fansCount > 0 ? totalRatingValue / fansCount : 0;
-      setMRV(calculatedMRV.toFixed(1));*/
+      setMRV(calculatedMRV.toFixed(1));
     } catch (error) {
       console.error('Error fetching movie ratings:', error);
     }});
@@ -89,21 +89,23 @@ function MovieDetails() {
     } catch (error) {
       console.error('Error adding rating:', error);
     }
-  };
+  };*/
 
   return (
     <div className='movie-details'>
       <Head Title="Movie Details" />
       <Header />
       <BodyContent>
-        <div className='content'>
+        <h1>Movie ID: {MovieIdInt}</h1>
+       { /* <div className='content'>
           <div><img className='pic' src={MovieInfor.path} alt={MovieInfor.title} /></div>
           <div className='data'>
             <span>MRV Value: {MRV !== null ? MRV : 'Not Rated Yet'}</span><br />
             <span>Title: {MovieInfor.title}</span><br />
             <span>Your Rating: <StarRating onChange={handleRatingChange} /></span><br />
           </div>
-        </div>
+          </div> */}
+
       </BodyContent>
       <Footer />
     </div>

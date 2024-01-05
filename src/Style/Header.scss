@@ -10,6 +10,12 @@
 
 .app-name{
     font-size: map-get($topic-style, size );
+    background-color: yellow;
+    border: none;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px;
+    color: black;
     text-align: left;  
     margin-right: auto;
    
@@ -24,21 +30,23 @@ a {
     text-decoration: none; 
     color: $font-color;     
     font-size: map-get($phara-style, size); 
+    padding: 10px;
     cursor: pointer;   
   }
-  .nav-bar::before {
+  .nav-bar:before {
     content: '';
     position: absolute;
+    margin-top: 7px;
     width: 0;
     height: 2px;
-    background-color: red; // Change to your desired hover color
-    bottom: 0;
+    background-color: red;
+    bottom: 0px;
     left:0%;
     transition: width 0.3s ease-in-out;
 }
 
 a:hover {
-    color: red; // Change to your desired hover color
+    color: red; 
 }
 
 .nav-bar:hover::before {

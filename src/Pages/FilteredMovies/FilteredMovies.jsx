@@ -1,77 +1,86 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useApiContext } from '../../Components/ApiContex/ApiContext';
+import { useApiContextTitle } from '../../Components/ApiConetexTitle/ApiContexTitle';
+import { Link } from 'react-router-dom';
+import Skeleton , {SkeletonTheme} from 'react-loading-skeleton';
+import Head from '../../Components/Head/Head';
 import Header from '../../Components/Header/Header';
 import Footer from '../../Components/Footer/Footer';
-import Head from '../../Components/Head/Head';
 import BodyContent from '../../Components/BodyContent/BodyContent';
-import ImageClickNavigation from '../../Components/ImageClickNavigation/ImageClickNavigation';
 import '../../Style/FilteredMovies.scss';
-import { useState ,useEffect} from 'react';
-import { useParams } from 'react-router-dom';
-import { Swiper,SwiperSlide } from 'swiper/react';
-import { Grid,Pagination} from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/grid';
-import 'swiper/css/pagination';
-import MovieDetails from '../../MovieDetails/MovieDetails.json';
+
 
 
 function FilteredMovies() {
-  const {LanguageId,GenreId} = useParams();
-  const [rowCount, setRowCount] = useState(2); // Default row count
-  const [filteredMovies, setFilteredMovies] = useState([]);
+  const {ApiUrl} = useApiContext();
+  const {ApiTitle} = useApiContextTitle();
+  const [IsLoading,setIsloading] = useState(false);
+  const [MovieDetails,setMovieDetails] = useState([]);
+
+  const [IsUrl,setIsUrl] = useState(true);
+
+  console.log("Api Url: ",ApiUrl);
+  console.log("Title: ",ApiTitle);
 
   useEffect(() => {
-    let filteredMoviesArray = MovieDetails; 
-    const languageIdInt = parseInt(LanguageId, 10); // convert Languagr id value into Integer
-    const genreIdInt = parseInt(GenreId, 10);
-
-    if (languageIdInt > 0 && genreIdInt === 0) {
-      console.log("Filtering by Language ID:", languageIdInt);
-      filteredMoviesArray = filteredMoviesArray.filter((movie) => movie.language === languageIdInt);
-    }else if(languageIdInt === 0 && genreIdInt > 0){
-      filteredMoviesArray = filteredMoviesArray.filter((movie) => movie.genre.includes(genreIdInt));
-    }else{
-      alert("Not Found movie");
+    if (!ApiUrl || !ApiTitle) {
+      setIsUrl(false);
+      return;
     }
+  },[ApiUrl,ApiTitle])
 
-    // Calculate the total number of slides 
-    const totalSlides = filteredMoviesArray.length;
-    //console.log("Fitterd movie list",filteredMoviesArray);
-    //console.log("Total slide",totalSlides);
+  useEffect(() => {
+    setTimeout(() => {
+        setIsloading(false);
+    },1500)
+},[])
 
-    // Calculate the number of rows dynamically based on the total slides
-    const calculatedRowCount = Math.ceil(totalSlides / 3); 
-    console.log(calculatedRowCount);
-    setRowCount(calculatedRowCount);
+useEffect(() => {
+    try{
+        fetch(ApiUrl)
+        .then(req => req.json())
+        .then(data => setMovieDetails(data.results))
+        .catch(err => {
+            console.error("Error fetching data:", err);
+        });
+    }catch(err){
+        console.error("Error! : ", err);
+    }
+},[IsLoading,ApiUrl,ApiTitle])
 
-    // Set filtered movies
-    setFilteredMovies(filteredMoviesArray);
-  }, [LanguageId, GenreId]);
   return (
     <div className='filtered-movies'>
       <Head Title="Your Movies"/>
         <Header/>
-        <BodyContent>
-          <div className='body'>
-            <Swiper
-              modules={[Grid, Pagination]}
-              slidesPerView={3}
-              grid={{
-                rows: rowCount,
-              }}
-              spaceBetween={30}
-              pagination={{
-                clickable: true,
-              }}
-              className="filter-movie-swiper"
-              >
-              {filteredMovies.map((movie) => (
-                <SwiperSlide key={movie.id}>
-                  <ImageClickNavigation path={movie.path} movieId={movie.id}  alt={movie.title}/>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </div>
+        <BodyContent className='body'>
+          {IsUrl ? 
+          
+          <div>
+            {IsLoading ? 
+            <div className='card'>
+                <SkeletonTheme color="#202020" highlightColor='#444'>
+                    <Skeleton height={300} duration={2} />
+                </SkeletonTheme>
+            </div> :
+            <div>
+                <h2 className='card-title'>{ApiTitle}</h2>
+                {MovieDetails.map(movie => (
+                     <Link to={`/movie-page/${movie.id}`}>
+                        <div className='card'>
+                            <img className='image-filter' src={`https://image.tmdb.org/t/p/original${movie && movie.poster_path}`} alt={movie.title} />
+                            <div className='overlay-filter'>
+                              <div className='title-filter'><span>{movie ? movie.title : " "}</span></div>                
+                              <div className='release-date-filter'><span>{movie ? movie.release_date : " "}</span></div>
+                            </div>
+                        </div> 
+                     </Link>   
+                ))}
+            </div>
+
+            } 
+            </div>     
+         
+          : <div className='waiting'>Loading ...</div> }
         </BodyContent>      
         <Footer/>
     </div>

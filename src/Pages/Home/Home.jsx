@@ -5,8 +5,9 @@ import Head from '../../Components/Head/Head';
 import BodyContent from'../../Components/BodyContent/BodyContent';
 import '../../Style/Home.scss';
 import 'swiper/swiper-bundle.css'
-import LatestMovieSwiper from '../../Components/LatestMovieSwiper/LatestMovieSwiper';
+//import LatestMovieSwiper from '../../Components/LatestMovieSwiper/LatestMovieSwiper';
 import SaveMovieId from '../../SaveMovieId/SaveMovieId';
+import Popular from '../../Components/Popular/Popular';
 
 function Home() {
   return (
@@ -17,7 +18,7 @@ function Home() {
           </div>
           <div>
             <BodyContent>
-              <LatestMovieSwiper/>
+              <Popular/>
             </BodyContent>
           </div>
           <div>
