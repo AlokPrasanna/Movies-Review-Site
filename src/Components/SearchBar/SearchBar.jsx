@@ -1,23 +1,44 @@
-import React, { useState } from 'react';
-import MovieDetails from '../../MovieDetails/MovieDetails.json';
+import React, { useState , useEffect} from 'react';
+import { useNavigate } from 'react-router-dom';
+const Key = localStorage.getItem('TMDBKey');
 
 function SearchBar() {
-    const [InputValues,setInputValues] =useState();
-    const [Suggestions , setSuggestions] = useState([]);
+   const [Query,setQuery] = useState('');
+   const [Suggestions , setSuggestions] = useState([]);
+   const Navigate = useNavigate();
 
+   useEffect(() => {
+    if(Query.trim() === ''){
+        setSuggestions([]);
+        return;
+    }
+
+    fetch(`https://api.themoviedb.org/3/search/movie?api_key=${Key}&query=${Query}`)
+    .then(res => res.json())
+    .then(data => setSuggestions(data.results))
+    .catch(err => console.error("Error! : ", err))
+   },[Query]);
+
+   const HandeleSelectMovie = (MovieId) => {
+        Navigate(`/movie-page/${MovieId}`);
+        setQuery('');
+        setSuggestions([]);
+   };
 
   return (
     <div>
         <div>
             <input
             type="text"
-            value={InputValues}
-            onChange={handleInputChange}
-            placeholder="Type to search..."/>
+            value={Query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search for movies..."/>
         </div>
         <div>
             <ul>
-                {Suggestions.map((suggestion,index))}
+                {Suggestions.map((Movie) => (
+                    <li key={Movie.id} onClick={() => HandeleSelectMovie(Movie.id)}>{Movie.title}</li>
+                )).slice(0,5)}
             </ul>
         </div>      
     </div>

@@ -1,61 +1,68 @@
 @import "Colors";
 @import 'PageAlignments';
 
-
-.movie-details{
-    background-color:$page-background-color;
+.movie-details {
+    background-color: $page-background-color;
     padding-left: $padding-left;
     padding-right: $padding-right;
 }
 
-.movie{
+.movie {
     display: flex;
+    align-items: flex-start; /* Align items at the start of the cross axis */
 }
- 
-.left-side{
+
+.left-side {
     width: 60%;
     padding: 20px;
     color: white;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-.m-title{
+.right-side{
+    padding: 20px;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 26px;
+    font-weight: bold;
+    margin-left: auto;
+    margin-right: 30px;
+    margin-top: 5px;
+}
+
+.m-title {
     font-size: 45px;
     font-weight: bold;
-
 }
-.m-overview{
-    font-size:18px;
+
+.m-overview {
+    font-size: 18px;
     font-style: italic;
 }
-.m-releasedate-runtime{
+
+.m-releasedate-runtime {
     font-size: 30px;
     font-weight: bold;
 }
-.genres{
+
+.genres {
     padding: 10px;
-    margin-left: 20px;
+    margin-left: 0;
     font-size: 25px;
     font-style: italic;
-
 }
-
+.genre{
+    margin-right: 20px;
+}
 .image-video{
     display: flex;
-    justify-content: space-evenly;
-    height: 500px;
+    justify-content:center;
+    align-items: flex-start;
 }
 
 .movie-image{
-    width: 30%;
-}
-
-.movie-image > img{
-    width:400px;
-    padding: 20px;
-    margin-left: 100px;
-}
-
-.movie-video{
-    padding: 20px;
     width: auto;
+    height: 500px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
+

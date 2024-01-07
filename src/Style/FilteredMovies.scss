@@ -8,16 +8,22 @@
 }
 
 .content {
-    display: flex;
-    align-items: center; /* Vertical centering */
-    justify-content: center; /* Horizontal centering */
-    height: 100vh; /* 100% of the viewport height */
-    margin: 0; /* Remove default body margin */
+    display: flex;    
+    margin: 0; 
+  }
+  .card-title{
+    font-size: 45px;
+    margin-left: 30px;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-style: italic;
+    font-weight: bolder;
   }
     .card {
         display: inline-block;
         color: white;
-        justify-content: center;
+        align-items: center; 
+        justify-content:center;
         transition: transform .2s;
         position: relative;
         border-radius: 10px;

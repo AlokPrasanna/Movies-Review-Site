@@ -171,12 +171,14 @@ function MovieDetails() {
         <div className='movie'>
           <div className='left-side'>
             <span className='m-title'>{MovieDetails ? MovieDetails.original_title : " "}</span><br />
-            <span className='m-releasedate-runtime'>{MovieDetails ? MovieDetails.release_date : " " }  .  {RunTime ? RunTime : " "} </span>
+            <span className='m-releasedate-runtime'>{MovieDetails ? MovieDetails.release_date : " " }  .  {RunTime ? RunTime : " "} </span><br />
+            <div className='genres' >
             {Genres && Genres.map(genre => ( 
-                <span className='genres'>{genre ? genre.name: " "}</span>
-            ))}<br /><br />
+                <span className='genre'>{genre ? genre.name: " "}</span>
+            ))}
+            </div>
             <span className='m-overview'>{MovieDetails ? MovieDetails.overview : " "}</span><br />
-            <span></span><br />
+            <br />
           </div>
           <div className='right-side'>
             <div>MRV Rating:   {MRV != 0 ? MRV : "Rate Me Please ;) "}</div>
@@ -186,14 +188,14 @@ function MovieDetails() {
           </div>
         </div>
       <div className='image-video'>
-        <div className='movie-image'><img src={`https://image.tmdb.org/t/p/original${MovieDetails && MovieDetails.poster_path}`} alt={MovieDetails.title}/></div>
-          <div className='movie-video'>
-            <YouTube videoId={MovieVideo[7]?.key} />
-          </div>
+        <img className='movie-image' src={`https://image.tmdb.org/t/p/original${MovieDetails && MovieDetails.poster_path}`} alt={MovieDetails.title}/>   
+        <YouTube videoId={MovieVideo[7]?.key} />
       </div>
-      </BodyContent>
-      <Footer />
+      </BodyContent><br />
+      <Footer/>
       <SaveMovieId/>
+      
+      
     </div>
   );
 }
