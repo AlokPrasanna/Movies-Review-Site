@@ -52,7 +52,7 @@ useEffect(() => {
     <div className='filtered-movies'>
       <Head Title="Your Movies"/>
         <Header/>
-        <BodyContent className='body'>
+        <BodyContent className='content'>
           {IsUrl ? 
           
           <div>

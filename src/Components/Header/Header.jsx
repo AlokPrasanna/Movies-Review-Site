@@ -37,7 +37,7 @@ function Header() {
     <div className='header'>
         <header className='nav-bar'>
               <Link to="/" className='app-name'>MRV</Link>
-              <Link to='/'>Hpme</Link>
+              <Link to='/'>Home</Link>
               <Link   to='/filtered-movies' onClick={() => {SendData(1)}}>Top Rated</Link>
               <Link   to='/filtered-movies' onClick={() => {SendData(2)}} >Popular</Link>
               <Link   to='/filtered-movies' onClick={() => {SendData(3)}}>Now Playing</Link>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { ApiContextProvider } from './Components/ApiContex/ApiContext';
 import { ApiContextTitleProvider } from './Components/ApiConetexTitle/ApiContexTitle';
+import { ApiContextIdProvider } from './Components/ApiContexId/ApiContexId';
 import './App.css';
 import Home from './Pages/Home/Home';
 import About from './Pages/About/About';
@@ -13,7 +14,7 @@ localStorage.setItem('TMDBKey',TMDBKeyVal);
 function App() {
   return (
     <div className="App">
-      <ApiContextProvider><ApiContextTitleProvider>
+      <ApiContextProvider><ApiContextTitleProvider><ApiContextIdProvider>
         <BrowserRouter>
           <Routes>
             <Route path='/' element={<Home/>}></Route>
@@ -21,7 +22,7 @@ function App() {
             <Route path='/filtered-movies' element={<FilteredMovies/>}></Route>
             <Route path='/movie-page/:MovieId' element={<MovieDetails/>}></Route>
           </Routes>
-        </BrowserRouter></ApiContextTitleProvider>
+        </BrowserRouter></ApiContextIdProvider></ApiContextTitleProvider>
       </ApiContextProvider>
     </div>
   );

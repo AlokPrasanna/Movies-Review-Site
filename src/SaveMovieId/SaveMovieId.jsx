@@ -1,25 +1,23 @@
 import React, { useEffect } from 'react';
-import MovieDetails from '../MovieDetails/MovieDetails.json';
+import { useApiContextId } from '../Components/ApiContexId/ApiContexId';
 import axios from 'axios';
 
 function SaveMovieId() {
+
+  const {Id} = useApiContextId();
+
   useEffect(() => {
     const saveMovieId = async () => {
       try {
-        const promises = MovieDetails.map(async (movie) => {
-          const movieId = { movieId: movie.id };
-          const response = await axios.post("http://localhost:3001/add-new-movie-id", movieId);
-          console.log(response.data.message);
-        });
-
-        await Promise.all(promises);
+        console.log("Api context Id : ",Id);
+          const response = await axios.post("http://localhost:3001/add-new-movie-id", {Id:Id});
       } catch (error) {
         console.log("Save Movie Id Error:", error);
       }
     };
 
     saveMovieId();
-  }, []);
+  }, [Id]);
 
   return <div></div>;
 }

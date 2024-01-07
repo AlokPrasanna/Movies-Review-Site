@@ -25,7 +25,7 @@ db.connect((err) => {
   });
 
 app.post("/add-new-movie-id", (req,res) => {
-    const MovieId = req.body.movieId;
+    const MovieId = req.body.Id;
     console.log(req.body)
     if (!MovieId) {
         return res.status(400).json({ error: "Missing movieId in the request body" });

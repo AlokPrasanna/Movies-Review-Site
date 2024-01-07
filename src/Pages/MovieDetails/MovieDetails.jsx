@@ -1,23 +1,94 @@
-import React, { useCallback, useEffect, useState } from 'react';
 import '../../Style/MovieDetails.scss';
+import React, { useEffect, useState, useCallback } from 'react';
+import { useApiContextId } from '../../Components/ApiContexId/ApiContexId';
+import StarRating from '../../Components/StarRating/StarRating';
+import YouTube from 'react-youtube';
+import { useParams } from 'react-router-dom';
 import Head from '../../Components/Head/Head';
 import Header from '../../Components/Header/Header';
 import BodyContent from '../../Components/BodyContent/BodyContent';
 import Footer from '../../Components/Footer/Footer';
-import { useParams } from 'react-router-dom';
-//import StarRating from '../../Components/StarRating/StarRating';
-//import axios from 'axios';
+import SaveMovieId from '../../SaveMovieId/SaveMovieId';
+import axios from 'axios';
+const Key = localStorage.getItem('TMDBKey');
 
 function MovieDetails() {
   const { MovieId } = useParams();
+  const {setContextIdData} = useApiContextId();
   const MovieIdInt = parseInt(MovieId, 10);
+  const [MovieDetails,setMovieDetails] = useState("");
+  const [MovieVideo, setMovieVideo] = useState([]);
+  const [Genres,setGenres] = useState([]);
+  const [RunTime, setRunTime] = useState(0);
+  const [MRV,setMRV] = useState(0);
+  const [MovieRatings ,setMovieRatings] = useState();
+  const [NewFansCount, setNewFansCount]  = useState();
   console.log("Movie Id : ", MovieIdInt);
 
-  /*const MovieInfor = MovieDetail.find((movie) => movie.id === MovieIdInt);
+  const GetMovieDetails = () => {
+    try{
+      fetch(`https://api.themoviedb.org/3/movie/${MovieId}?api_key=${Key}`)
+      .then(res => res.json())
+      .then(data => setMovieDetails(data))
+      .catch(err => {
+        console.error("Error! : ", err);
+      })
 
-  const [MovieRatings, setMovieRatings] = useState([null]);
-  const [MRV, setMRV] = useState(null);
-  const [newFansCount, setNewFansCount] = useState(0); 
+    }catch(err){
+      console.error("Error! : ", err);
+    }
+  }
+
+  const GetMovieViedo = () =>{
+    try{
+      fetch(`https://api.themoviedb.org/3/movie/${MovieId}/videos?api_key=${Key}`)
+      .then(res => res.json())
+      .then(data =>  setMovieVideo(data.results))
+      .catch(err => { 
+        console.error("Error! : ", err);
+      })
+
+    }catch(err){
+      console.error("Error! : ", err);
+    }
+  }
+
+  useEffect(() => {
+    try{
+      GetMovieDetails();
+      GetMovieViedo();
+      setContextIdData(MovieId);
+    }catch(err){
+      console.error("Error! : ", err );
+    }
+   
+  },[MovieId]);
+
+  useEffect(() => {
+    try {
+      if (MovieDetails.genres) {
+        setGenres(MovieDetails.genres);
+      }
+      ConvertRunTime(parseInt(MovieDetails.runtime, 10));
+    } catch (err) {
+      console.error("Error! : ", err);
+    }
+  }, [MovieDetails]);
+
+  const ConvertRunTime = (runtime) => {
+    console.log("runTime: ", runtime );
+   
+    // Calculate hours and minutes
+    const hours = Math.floor(runtime / 60);
+    const minutes = runtime % 60;
+  
+    // Construct the formatted string
+    const formattedTime = `${hours}h ${minutes}m`;
+  
+    setRunTime(formattedTime)
+  };  
+
+  console.log("Genres: ", Genres);
 
   const fetchMovieRatings = useCallback( async () => {
     try {
@@ -34,19 +105,18 @@ function MovieDetails() {
           const FansCount = filteredRatings.reduce((total, rating) => total + rating.fans_count, 0);
           setMovieRatings(RatingCount);
           setNewFansCount(FansCount);
-         // console.log(RatingCount);
-          //console.log(FansCount);
+          console.log("Rating Count: ",RatingCount);
+          console.log("FansCount: ",FansCount);
   
           if (!isNaN(RatingCount) && !isNaN(FansCount) && FansCount !== 0) {
             const CalculateMRV = RatingCount / FansCount;
             console.log("Calculate MRV value: ",CalculateMRV);
             setMRV(CalculateMRV.toFixed(1));
           } else {
-            setMRV(null);
+            setMRV(0);
             console.log("Rating null");
           }
         } else {
-          setMRV(null);
           console.log("No ratings found");
         }
       } catch (error) {
@@ -56,14 +126,15 @@ function MovieDetails() {
       const fansCount = filteredRatings.reduce((total, rating) => total + rating.fans_count, 0);
 
       const calculatedMRV = fansCount > 0 ? totalRatingValue / fansCount : 0;
-      setMRV(calculatedMRV.toFixed(1));
+      setMRV(calculatedMRV.toFixed(1));*/
     } catch (error) {
       console.error('Error fetching movie ratings:', error);
     }});
 
-  useEffect(() => {
-    fetchMovieRatings();
-  }, [MovieIdInt,fetchMovieRatings]);
+    useEffect(() => {
+      fetchMovieRatings();
+    }, [MovieIdInt,fetchMovieRatings]);
+  
 
   const handleRatingChange = async (newRating) => {
     
@@ -74,8 +145,8 @@ function MovieDetails() {
       console.log("Movie Id: ", MovieId);
       console.log("Old Rating Value: ",MovieRatings);
       console.log("New raring value: ", CalNewRatings);
-      console.log("Old Fans count: ", newFansCount);
-      let CalNewFansCount = newFansCount;
+      console.log("Old Fans count: ", NewFansCount);
+      let CalNewFansCount = NewFansCount;
       CalNewFansCount +=1;
       console.log("New fans Count: ",CalNewFansCount)
 
@@ -89,25 +160,40 @@ function MovieDetails() {
     } catch (error) {
       console.error('Error adding rating:', error);
     }
-  };*/
+  };
+  console.log("MRV value : ",MRV);
 
   return (
     <div className='movie-details'>
       <Head Title="Movie Details" />
       <Header />
       <BodyContent>
-        <h1>Movie ID: {MovieIdInt}</h1>
-       { /* <div className='content'>
-          <div><img className='pic' src={MovieInfor.path} alt={MovieInfor.title} /></div>
-          <div className='data'>
-            <span>MRV Value: {MRV !== null ? MRV : 'Not Rated Yet'}</span><br />
-            <span>Title: {MovieInfor.title}</span><br />
-            <span>Your Rating: <StarRating onChange={handleRatingChange} /></span><br />
+        <div className='movie'>
+          <div className='left-side'>
+            <span className='m-title'>{MovieDetails ? MovieDetails.original_title : " "}</span><br />
+            <span className='m-releasedate-runtime'>{MovieDetails ? MovieDetails.release_date : " " }  .  {RunTime ? RunTime : " "} </span>
+            {Genres && Genres.map(genre => ( 
+                <span className='genres'>{genre ? genre.name: " "}</span>
+            ))}<br /><br />
+            <span className='m-overview'>{MovieDetails ? MovieDetails.overview : " "}</span><br />
+            <span></span><br />
           </div>
-          </div> */}
-
+          <div className='right-side'>
+            <div>MRV Rating:   {MRV != 0 ? MRV : "Rate Me Please ;) "}</div>
+            <div>Rating Count: {NewFansCount != 0 ? NewFansCount : " "}</div>
+            <div>Your Rating <StarRating onChange={handleRatingChange} /></div>
+            
+          </div>
+        </div>
+      <div className='image-video'>
+        <div className='movie-image'><img src={`https://image.tmdb.org/t/p/original${MovieDetails && MovieDetails.poster_path}`} alt={MovieDetails.title}/></div>
+          <div className='movie-video'>
+            <YouTube videoId={MovieVideo[7]?.key} />
+          </div>
+      </div>
       </BodyContent>
       <Footer />
+      <SaveMovieId/>
     </div>
   );
 }

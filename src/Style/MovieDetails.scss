@@ -6,20 +6,56 @@
     background-color:$page-background-color;
     padding-left: $padding-left;
     padding-right: $padding-right;
+}
 
-    .content{
-        display: flex;
+.movie{
+    display: flex;
+}
+ 
+.left-side{
+    width: 60%;
+    padding: 20px;
+    color: white;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+.m-title{
+    font-size: 45px;
+    font-weight: bold;
 
-        .pic{
-            width: 300px;
-            height:500px;
-            padding: 10px;
-            margin-left: 250px;
-            padding: 20px;
-        }
-        .data{
-            padding: 20px;
-            margin: 50px;
-        }
-    }
+}
+.m-overview{
+    font-size:18px;
+    font-style: italic;
+}
+.m-releasedate-runtime{
+    font-size: 30px;
+    font-weight: bold;
+}
+.genres{
+    padding: 10px;
+    margin-left: 20px;
+    font-size: 25px;
+    font-style: italic;
+
+}
+
+.image-video{
+    display: flex;
+    justify-content: space-evenly;
+    height: 500px;
+}
+
+.movie-image{
+    width: 30%;
+}
+
+.movie-image > img{
+    width:400px;
+    padding: 20px;
+    margin-left: 100px;
+}
+
+.movie-video{
+    padding: 20px;
+    width: auto;
 }
