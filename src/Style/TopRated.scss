@@ -1,0 +1,9 @@
+@import "Colors";
+@import 'PageAlignments';
+
+
+.top-rated-movies{
+    background-color:$page-background-color;
+    padding-left: $padding-left;
+    padding-right: $padding-right;
+}

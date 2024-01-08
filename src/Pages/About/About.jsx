@@ -14,6 +14,7 @@ function About() {
       </div>
           <BodyContent>
               <h1>About Page</h1>
+              <br />
           </BodyContent>
       <div>
         <Footer/>

@@ -4,6 +4,7 @@ import { ApiContextTitleProvider } from './Components/ApiConetexTitle/ApiContexT
 import { ApiContextIdProvider } from './Components/ApiContexId/ApiContexId';
 import './App.css';
 import Home from './Pages/Home/Home';
+import TopRated from './Pages/TopRated/TopRated'
 import About from './Pages/About/About';
 import MovieDetails from './Pages/MovieDetails/MovieDetails';
 import FilteredMovies from './Pages/FilteredMovies/FilteredMovies';
@@ -18,6 +19,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path='/' element={<Home/>}></Route>
+            <Route path='/top-rated-movies' element={<TopRated/>}></Route>
             <Route path='/about' element={<About/>}></Route>
             <Route path='/filtered-movies' element={<FilteredMovies/>}></Route>
             <Route path='/movie-page/:MovieId' element={<MovieDetails/>}></Route>

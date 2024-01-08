@@ -1,6 +1,8 @@
+import '../../Style/SearchBar.scss';
 import React, { useState , useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 const Key = localStorage.getItem('TMDBKey');
+
 
 function SearchBar() {
    const [Query,setQuery] = useState('');
@@ -26,16 +28,17 @@ function SearchBar() {
    };
 
   return (
-    <div>
+    <div className='search-bar'>  
         <div>
             <input
+            className='text-area'
             type="text"
             value={Query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search for movies..."/>
         </div>
         <div>
-            <ul>
+            <ul className='suggestions-list'>
                 {Suggestions.map((Movie) => (
                     <li key={Movie.id} onClick={() => HandeleSelectMovie(Movie.id)}>{Movie.title}</li>
                 )).slice(0,5)}

@@ -81,6 +81,7 @@ useEffect(() => {
             </div>     
          
           : <div className='waiting'>Loading ...</div> }
+          <br />
         </BodyContent>      
         <Footer/>
     </div>

@@ -16,6 +16,7 @@ function Home() {
           <div>
             <BodyContent>
               <Popular/>
+              <br />
             </BodyContent>
           </div>
           <div>
