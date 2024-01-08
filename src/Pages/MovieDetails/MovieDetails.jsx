@@ -62,7 +62,7 @@ function MovieDetails() {
       console.error("Error! : ", err );
     }
    
-  },[MovieId]);
+  },[MovieId,setContextIdData]);
 
   useEffect(() => {
     try {
@@ -129,7 +129,7 @@ function MovieDetails() {
       setMRV(calculatedMRV.toFixed(1));*/
     } catch (error) {
       console.error('Error fetching movie ratings:', error);
-    }});
+    }},[MovieIdInt]);
 
     useEffect(() => {
       fetchMovieRatings();
@@ -181,8 +181,8 @@ function MovieDetails() {
             <br />
           </div>
           <div className='right-side'>
-            <div>MRV Rating:   {MRV != 0 ? MRV : "Rate Me Please ;) "}</div>
-            <div>Rating Count: {NewFansCount != 0 ? NewFansCount : " "}</div>
+            <div>MRV Rating:   {MRV !== 0 ? MRV : "Rate Me Please ;) "}</div>
+            <div>Rating Count: {NewFansCount !== 0 ? NewFansCount : " "}</div>
             <div>Your Rating <StarRating onChange={handleRatingChange} /></div>
             
           </div>
