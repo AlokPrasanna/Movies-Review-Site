@@ -46,7 +46,7 @@ function TopRated() {
        }
     };
     fetchData();
- }, [IsLoading,TopRatedMoviesList]);
+ }, [IsLoading]);
 
  const GetMovieDetails = async () => {
   try {

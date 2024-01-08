@@ -62,7 +62,7 @@ function MovieDetails() {
     } catch (err) {
       console.error("Error! : ", err);
     }
-  }, [MovieId,GetMovieDetails,GetMovieViedo,setContextIdData]); 
+  }, [MovieId]); 
 
   useEffect(() => {
     try {
@@ -126,7 +126,7 @@ function MovieDetails() {
 
   useEffect(() => {
     fetchMovieRatings();
-  }, [MovieIdInt, fetchMovieRatings]);
+  }, [MovieIdInt]);
 
   const handleRatingChange = async (newRating) => {
     try {
