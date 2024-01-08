@@ -62,7 +62,7 @@ function MovieDetails() {
       console.error("Error! : ", err );
     }
    
-  },[MovieId,setContextIdData]);
+  },[MovieId]);
 
   useEffect(() => {
     try {

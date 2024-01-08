@@ -10,7 +10,7 @@ function SaveMovieId() {
     const saveMovieId = async () => {
       try {
         console.log("Api context Id : ",Id);
-          const response = await axios.post("http://localhost:3001/add-new-movie-id", {Id:Id});
+        await axios.post("http://localhost:3001/add-new-movie-id", {Id:Id});
       } catch (error) {
         console.log("Save Movie Id Error:", error);
       }
