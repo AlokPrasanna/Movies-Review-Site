@@ -10,6 +10,7 @@ import BodyContent from '../../Components/BodyContent/BodyContent';
 import Footer from '../../Components/Footer/Footer';
 import SaveMovieId from '../../SaveMovieId/SaveMovieId';
 import axios from 'axios';
+import { Carousel } from 'react-responsive-carousel';
 const Key = localStorage.getItem('TMDBKey');
 
 function MovieDetails() {
@@ -40,8 +41,6 @@ function MovieDetails() {
     }
   };
 
-  // Move the GetMovieViedo function inside the MovieDetails component
-  // and wrap it with useCallback to ensure stable reference
   const GetMovieViedo = useCallback(() => {
     try {
       fetch(`https://api.themoviedb.org/3/movie/${MovieId}/videos?api_key=${Key}`)
@@ -53,7 +52,7 @@ function MovieDetails() {
     } catch (err) {
       console.error("Error! : ", err);
     }
-  }, [MovieId]); // Add MovieId to the dependency array
+  }, [MovieId]); 
 
   useEffect(() => {
     try {
@@ -63,7 +62,7 @@ function MovieDetails() {
     } catch (err) {
       console.error("Error! : ", err);
     }
-  }, [MovieId, GetMovieDetails, GetMovieViedo]); // Add MovieId, GetMovieDetails, and GetMovieViedo to the dependency array
+  }, [MovieId,GetMovieDetails,GetMovieViedo,setContextIdData]); 
 
   useEffect(() => {
     try {
@@ -179,20 +178,30 @@ function MovieDetails() {
           </div>
         </div>
       <div className='image-video'>
-        <img className='movie-image' src={`https://image.tmdb.org/t/p/original${MovieDetails && MovieDetails.poster_path}`} alt={MovieDetails.title}/>   
-        <YouTube 
-          videoId={MovieVideo[7]?.key}
-          opts={{
-            width:'600px',
-            height:'400px',
-            playerVars:{
-              disablekb: 1,
-              modestbranding: 1,
-              showinfo: 0,
-              rel:0
-            }
-        }}      
-        />
+        <img className='movie-image' src={`https://image.tmdb.org/t/p/original${MovieDetails && MovieDetails.poster_path}`} alt={MovieDetails.title}/>
+        <Carousel
+          showThumbs={false}
+          showStatus={false}
+          infiniteLoop={true}
+        >
+          {MovieVideo &&
+              MovieVideo.map((video) => (
+                <YouTube
+                  key={video.key}
+                  videoId={video.key}
+                  opts={{
+                    width: '600px',
+                    height: '400px',
+                    playerVars: {
+                      disablekb: 1,
+                      modestbranding: 1,
+                      showinfo: 0,
+                      rel: 0,
+                    },
+                  }}
+                />
+              ))}
+        </Carousel>   
       </div>
       </BodyContent><br />
       <Footer/>

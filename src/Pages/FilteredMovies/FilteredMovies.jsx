@@ -64,6 +64,7 @@ useEffect(() => {
             </div> :
             <div>
                 <h2 className='card-title'>{ApiTitle}</h2>
+                <div className='card-content'>
                 {MovieDetails.map(movie => (
                      <Link to={`/movie-page/${movie.id}`}>
                         <div className='card'>
@@ -75,6 +76,7 @@ useEffect(() => {
                         </div> 
                      </Link>   
                 ))}
+                </div>
             </div>
 
             } 

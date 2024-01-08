@@ -46,7 +46,7 @@ function TopRated() {
        }
     };
     fetchData();
- }, [IsLoading]);
+ }, [IsLoading,TopRatedMoviesList]);
 
  const GetMovieDetails = async () => {
   try {
@@ -88,6 +88,7 @@ function TopRated() {
             </div> :
             <div>
                 <h2 className='card-title'>Top Rated Movies</h2>
+                <div className='card-content'>
                 {MoviesList && MoviesList.map((movie) => (
                      <Link to={`/movie-page/${movie.id}`}>
                         <div className='card'>
@@ -99,6 +100,7 @@ function TopRated() {
                         </div> 
                      </Link>   
                 ))}
+                </div>
             </div>
 
             } 
