@@ -14,55 +14,56 @@ const Key = localStorage.getItem('TMDBKey');
 
 function MovieDetails() {
   const { MovieId } = useParams();
-  const {setContextIdData} = useApiContextId();
+  const { setContextIdData } = useApiContextId();
   const MovieIdInt = parseInt(MovieId, 10);
-  const [MovieDetails,setMovieDetails] = useState("");
+  const [MovieDetails, setMovieDetails] = useState("");
   const [MovieVideo, setMovieVideo] = useState([]);
-  const [Genres,setGenres] = useState([]);
+  const [Genres, setGenres] = useState([]);
   const [RunTime, setRunTime] = useState(0);
-  const [MRV,setMRV] = useState(0);
-  const [MovieRatings ,setMovieRatings] = useState();
-  const [NewFansCount, setNewFansCount]  = useState();
+  const [MRV, setMRV] = useState(0);
+  const [MovieRatings, setMovieRatings] = useState();
+  const [NewFansCount, setNewFansCount] = useState();
   console.log("Movie Id : ", MovieIdInt);
 
+  // Move the GetMovieDetails function inside the MovieDetails component
+  // No need to wrap it with useCallback since it doesn't have dependencies
   const GetMovieDetails = () => {
-    try{
+    try {
       fetch(`https://api.themoviedb.org/3/movie/${MovieId}?api_key=${Key}`)
-      .then(res => res.json())
-      .then(data => setMovieDetails(data))
-      .catch(err => {
-        console.error("Error! : ", err);
-      })
-
-    }catch(err){
+        .then((res) => res.json())
+        .then((data) => setMovieDetails(data))
+        .catch((err) => {
+          console.error("Error! : ", err);
+        });
+    } catch (err) {
       console.error("Error! : ", err);
     }
-  }
+  };
 
-  const GetMovieViedo = () =>{
-    try{
+  // Move the GetMovieViedo function inside the MovieDetails component
+  // and wrap it with useCallback to ensure stable reference
+  const GetMovieViedo = useCallback(() => {
+    try {
       fetch(`https://api.themoviedb.org/3/movie/${MovieId}/videos?api_key=${Key}`)
-      .then(res => res.json())
-      .then(data =>  setMovieVideo(data.results))
-      .catch(err => { 
-        console.error("Error! : ", err);
-      })
-
-    }catch(err){
+        .then((res) => res.json())
+        .then((data) => setMovieVideo(data.results))
+        .catch((err) => {
+          console.error("Error! : ", err);
+        });
+    } catch (err) {
       console.error("Error! : ", err);
     }
-  }
+  }, [MovieId]); // Add MovieId to the dependency array
 
   useEffect(() => {
-    try{
+    try {
       GetMovieDetails();
       GetMovieViedo();
       setContextIdData(MovieId);
-    }catch(err){
-      console.error("Error! : ", err );
+    } catch (err) {
+      console.error("Error! : ", err);
     }
-   
-  },[MovieId,GetMovieDetails,GetMovieViedo,setContextIdData]);
+  }, [MovieId, GetMovieDetails, GetMovieViedo]); // Add MovieId, GetMovieDetails, and GetMovieViedo to the dependency array
 
   useEffect(() => {
     try {
@@ -76,41 +77,38 @@ function MovieDetails() {
   }, [MovieDetails]);
 
   const ConvertRunTime = (runtime) => {
-    console.log("runTime: ", runtime );
-   
+    console.log("runTime: ", runtime);
+
     // Calculate hours and minutes
     const hours = Math.floor(runtime / 60);
     const minutes = runtime % 60;
-  
+
     // Construct the formatted string
     const formattedTime = `${hours}h ${minutes}m`;
-  
-    setRunTime(formattedTime)
-  };  
+
+    setRunTime(formattedTime);
+  };
 
   console.log("Genres: ", Genres);
 
-  const fetchMovieRatings = useCallback( async () => {
+  const fetchMovieRatings = useCallback(async () => {
     try {
       const response = await axios.get('http://localhost:3001/get-movie-ratings');
-      //console.log(response);
-      // Filter the ratings based on the current movie ID
-      const filteredRatings = response.data.filter(rating => rating.movie_id === MovieIdInt);
-      console.log("Filtered Rating: ",filteredRatings);
+      const filteredRatings = response.data.filter((rating) => rating.movie_id === MovieIdInt);
+      console.log("Filtered Rating: ", filteredRatings);
 
-      // Calculate MRV based on ratings
-      try{
+      try {
         if (filteredRatings.length > 0) {
           const RatingCount = filteredRatings.reduce((total, rating) => total + rating.rating_count, 0);
           const FansCount = filteredRatings.reduce((total, rating) => total + rating.fans_count, 0);
           setMovieRatings(RatingCount);
           setNewFansCount(FansCount);
-          console.log("Rating Count: ",RatingCount);
-          console.log("FansCount: ",FansCount);
-  
+          console.log("Rating Count: ", RatingCount);
+          console.log("FansCount: ", FansCount);
+
           if (!isNaN(RatingCount) && !isNaN(FansCount) && FansCount !== 0) {
             const CalculateMRV = RatingCount / FansCount;
-            console.log("Calculate MRV value: ",CalculateMRV);
+            console.log("Calculate MRV value: ", CalculateMRV);
             setMRV(CalculateMRV.toFixed(1));
           } else {
             setMRV(0);
@@ -122,47 +120,40 @@ function MovieDetails() {
       } catch (error) {
         console.error('Data Not Valid:', error);
       }
-      /*const totalRatingValue = filteredRatings.reduce((total, rating) => total + rating.rating_value, 0);
-      const fansCount = filteredRatings.reduce((total, rating) => total + rating.fans_count, 0);
-
-      const calculatedMRV = fansCount > 0 ? totalRatingValue / fansCount : 0;
-      setMRV(calculatedMRV.toFixed(1));*/
     } catch (error) {
       console.error('Error fetching movie ratings:', error);
-    }},[MovieIdInt]);
+    }
+  }, [MovieIdInt]);
 
-    useEffect(() => {
-      fetchMovieRatings();
-    }, [MovieIdInt,fetchMovieRatings]);
-  
+  useEffect(() => {
+    fetchMovieRatings();
+  }, [MovieIdInt, fetchMovieRatings]);
 
   const handleRatingChange = async (newRating) => {
-    
     try {
-      console.log("New user rate: ",newRating)
+      console.log("New user rate: ", newRating);
       let CalNewRatings = newRating;
       CalNewRatings += MovieRatings;
       console.log("Movie Id: ", MovieId);
-      console.log("Old Rating Value: ",MovieRatings);
+      console.log("Old Rating Value: ", MovieRatings);
       console.log("New raring value: ", CalNewRatings);
       console.log("Old Fans count: ", NewFansCount);
       let CalNewFansCount = NewFansCount;
-      CalNewFansCount +=1;
-      console.log("New fans Count: ",CalNewFansCount)
+      CalNewFansCount += 1;
+      console.log("New fans Count: ", CalNewFansCount);
 
       await axios.put('http://localhost:3001/update-rating', {
         movieId: MovieIdInt,
         ratingValue: CalNewRatings,
-        newFansCount: CalNewFansCount 
+        newFansCount: CalNewFansCount
       });
-      
+
       fetchMovieRatings();
     } catch (error) {
       console.error('Error adding rating:', error);
     }
   };
-  console.log("MRV value : ",MRV);
-
+  console.log("MRV value : ", MRV);
   return (
     <div className='movie-details'>
       <Head Title="Movie Details" />
