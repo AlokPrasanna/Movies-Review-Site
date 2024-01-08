@@ -189,7 +189,19 @@ function MovieDetails() {
         </div>
       <div className='image-video'>
         <img className='movie-image' src={`https://image.tmdb.org/t/p/original${MovieDetails && MovieDetails.poster_path}`} alt={MovieDetails.title}/>   
-        <YouTube videoId={MovieVideo[7]?.key} />
+        <YouTube 
+          videoId={MovieVideo[7]?.key}
+          opts={{
+            width:'600px',
+            height:'400px',
+            playerVars:{
+              disablekb: 1,
+              modestbranding: 1,
+              showinfo: 0,
+              rel:0
+            }
+        }}      
+        />
       </div>
       </BodyContent><br />
       <Footer/>

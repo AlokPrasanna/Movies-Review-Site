@@ -5,12 +5,8 @@
     background-color:$page-background-color;
     padding-left: $padding-left;
     padding-right: $padding-right;
+   
 }
-
-.content {
-    display: flex;    
-    margin: 0; 
-  }
   .card-title{
     font-size: 45px;
     margin-left: 30px;
@@ -20,9 +16,11 @@
     font-weight: bolder;
   }
     .card {
-        display: inline-block;
+        display: inline-table;
         color: white;
-        align-items: center; 
+        padding: 8px;
+        margin-block: center;
+        align-items: flex-end; 
         justify-content:center;
         transition: transform .2s;
         position: relative;
@@ -55,7 +53,7 @@
         display: flex;
         flex-direction: column;
         width: 85%;
-        justify-content: center;
+        justify-content: flex-end;
         background-image: linear-gradient(rgb(0,0,0,0), rgb(0,0,0,1));
         opacity: 0;
         transition: opacity .2s;
