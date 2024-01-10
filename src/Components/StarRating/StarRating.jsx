@@ -26,7 +26,7 @@ function StarRating({onChange}) {
                     value={currentRate}
                     onClick={() => handleStarClick(currentRate)}
                 />
-                <FaStar size={20}
+                <FaStar size={35}
                     color={currentRate <= rate ? "yellow" : "grey"}
                 />
             </label>

@@ -37,12 +37,13 @@ function SearchBar() {
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search for movies..."/>
         </div>
-        <div>
+        <div>{Suggestions.length > 0 && (
             <ul className='suggestions-list'>
                 {Suggestions.map((Movie) => (
                     <li key={Movie.id} onClick={() => HandeleSelectMovie(Movie.id)}>{Movie.title}</li>
                 )).slice(0,5)}
             </ul>
+        )}
         </div>      
     </div>
   )

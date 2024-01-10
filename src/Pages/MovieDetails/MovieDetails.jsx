@@ -122,7 +122,7 @@ function MovieDetails() {
     } catch (error) {
       console.error('Error fetching movie ratings:', error);
     }
-  }, [MovieIdInt]);
+  }, [MovieId]);
 
   useEffect(() => {
     fetchMovieRatings();
@@ -160,25 +160,21 @@ function MovieDetails() {
       <BodyContent>
         <div className='movie'>
           <div className='left-side'>
-            <span className='m-title'>{MovieDetails ? MovieDetails.original_title : " "}</span><br />
-            <span className='m-releasedate-runtime'>{MovieDetails ? MovieDetails.release_date : " " }  .  {RunTime ? RunTime : " "} </span><br />
-            <div className='genres' >
-            {Genres && Genres.map(genre => ( 
-                <span className='genre'>{genre ? genre.name: " "}</span>
-            ))}
+            <span className='m-title'>{MovieDetails ? MovieDetails.title : " "}</span><br />
+            <span className='m-releasedate-runtime'>{MovieDetails ? MovieDetails.release_date : " " }  ..  {RunTime ? RunTime : " "} </span>
+            <div className='rating-part'>
+              <div>MRV Rating:   {MRV !== 0 ? MRV : "Rate Me Please ;) "}</div>
+              <div>Rating Count: {NewFansCount !== 0 ? NewFansCount : " "}</div>
+              <div>Your Rating <StarRating onChange={handleRatingChange} /></div> 
             </div>
-            <span className='m-overview'>{MovieDetails ? MovieDetails.overview : " "}</span><br />
             <br />
           </div>
           <div className='right-side'>
-            <div>MRV Rating:   {MRV !== 0 ? MRV : "Rate Me Please ;) "}</div>
-            <div>Rating Count: {NewFansCount !== 0 ? NewFansCount : " "}</div>
-            <div>Your Rating <StarRating onChange={handleRatingChange} /></div>
-            
+            <img className='movie-image' src={`https://image.tmdb.org/t/p/original${MovieDetails && MovieDetails.poster_path}`} alt={MovieDetails.title}/>
           </div>
-        </div>
+        </div><br />
       <div className='image-video'>
-        <img className='movie-image' src={`https://image.tmdb.org/t/p/original${MovieDetails && MovieDetails.poster_path}`} alt={MovieDetails.title}/>
+        
         <Carousel
           showThumbs={false}
           showStatus={false}
@@ -190,8 +186,8 @@ function MovieDetails() {
                   key={video.key}
                   videoId={video.key}
                   opts={{
-                    width: '600px',
-                    height: '400px',
+                    width: '100%',
+                    height: '600px',
                     playerVars: {
                       disablekb: 1,
                       modestbranding: 1,
@@ -203,6 +199,15 @@ function MovieDetails() {
               ))}
         </Carousel>   
       </div>
+      <br />
+      <div className='left-side'>
+        <div className='genres' >
+              {Genres && Genres.map(genre => ( 
+                  <span className='genre'>{genre ? genre.name: " "}</span>
+              ))}
+              </div>
+              <span className='m-overview'>{MovieDetails ? MovieDetails.overview : " "}</span><br />
+        </div>
       </BodyContent><br />
       <Footer/>
       <SaveMovieId/>

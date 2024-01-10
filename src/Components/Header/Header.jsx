@@ -30,13 +30,13 @@ function Header() {
     <div className='header'>
         <header className='nav-bar'>
               <Link to="/" className='app-name'>MRV</Link>
-              <SearchBar/>
               <Link to='/'>Home</Link>
               <Link   to='/top-rated-movies'>Top Rated</Link>
               <Link   to='/filtered-movies' onClick={() => {SendData(1)}} >Popular</Link>
               <Link   to='/filtered-movies' onClick={() => {SendData(2)}}>Now Playing</Link>
               <Link   to='/filtered-movies' onClick={() => {SendData(3)}}>Up Comming</Link>
               <Link  to='/about'>About</Link>
+              <SearchBar/>
         </header>
       <br />
     </div>

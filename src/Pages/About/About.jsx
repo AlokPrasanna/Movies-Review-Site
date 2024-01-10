@@ -31,7 +31,7 @@ function About() {
       </div>
       <BodyContent>
         <h1>About Us</h1>
-        <pre>{AboutText}</pre>
+        <p>{AboutText}</p>
         <br />
       </BodyContent>
       <div>

@@ -2,6 +2,17 @@
 @import "Colors.scss";
 @import "FontStyle.scss";
 
+.footer {
+    position: relative;
+    min-height: 20vh;
+  }
+  
+  footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+
 .icon{
     display: flex;
     justify-content: center; 
